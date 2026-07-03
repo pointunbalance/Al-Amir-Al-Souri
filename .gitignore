@@ -1,0 +1,19 @@
+# Temporary files
+_new_menu.html
+replace_menu.py
+gen_gallery.py
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Backup files
+backups/
