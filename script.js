@@ -95,6 +95,20 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(el);
   });
 
+  /* --- Section Title Animation --- */
+  const titleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        titleObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.section-title').forEach(title => {
+    titleObserver.observe(title);
+  });
+
   /* --- Smooth Scroll for Anchor Links --- */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
