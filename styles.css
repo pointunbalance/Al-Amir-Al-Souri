@@ -318,6 +318,22 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 8px 40px rgba(37, 211, 102, 0.6); }
 .whatsapp-float svg { width: 32px; height: 32px; }
+
+/* --- Back to Top --- */
+.back-to-top {
+  position: fixed; bottom: 96px; left: 24px; z-index: 999;
+  width: 50px; height: 50px; border-radius: 50%;
+  background: var(--gold); color: var(--dark);
+  display: flex; align-items: center; justify-content: center;
+  border: none; cursor: pointer;
+  box-shadow: 0 4px 20px rgba(212, 168, 67, 0.4);
+  transition: var(--transition); opacity: 0; visibility: hidden;
+  transform: translateY(20px);
+}
+.back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+.back-to-top:hover { transform: translateY(-4px); box-shadow: 0 6px 30px rgba(212, 168, 67, 0.6); }
+.back-to-top svg { width: 24px; height: 24px; }
+
 @keyframes pulse {
   0%, 100% { box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5); }
   50% { box-shadow: 0 6px 40px rgba(37, 211, 102, 0.8); }
@@ -379,4 +395,9 @@ img { max-width: 100%; height: auto; display: block; }
   .emenu-item { padding: 10px 1rem; }
   .emenu-item-name { font-size: 0.88rem; }
   .emenu-item-price { font-size: 0.88rem; }
+  .back-to-top { bottom: 90px; left: 16px; width: 44px; height: 44px; }
+  .whatsapp-float { bottom: 16px; left: 16px; width: 54px; height: 54px; }
+  .whatsapp-float svg { width: 28px; height: 28px; }
+  .section { padding: 3rem 0; }
+  .section-title { margin-bottom: 2rem; }
 }

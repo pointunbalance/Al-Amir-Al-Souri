@@ -24,19 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 50);
   });
 
-  /* --- Menu Tabs (Legacy) --- */
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const menuCategories = document.querySelectorAll('.menu-category');
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'));
-      menuCategories.forEach(c => c.classList.remove('active'));
-      btn.classList.add('active');
-      const target = document.getElementById(btn.dataset.tab);
-      if (target) target.classList.add('active');
-    });
-  });
-
   /* --- E-Menu Tabs --- */
   const emenuTabs = document.querySelectorAll('.emenu-tab');
   const emenuCategories = document.querySelectorAll('.emenu-category');
@@ -76,6 +63,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') closeLightbox();
   });
 
+  /* --- Back to Top Button --- */
+  const backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    backToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   /* --- Scroll Reveal Animation --- */
   const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -40px 0px' };
   const observer = new IntersectionObserver((entries) => {
@@ -87,8 +90,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  document.querySelectorAll('.menu-card, .gallery-item, .contact-card, .hours-card, .about-content').forEach(el => {
+  document.querySelectorAll('.emenu-items, .emenu-subcat, .gallery-item, .contact-card, .hours-card, .about-content').forEach(el => {
     el.classList.add('reveal');
     observer.observe(el);
+  });
+
+  /* --- Smooth Scroll for Anchor Links --- */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        const headerOffset = 80;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      }
+    });
   });
 });
